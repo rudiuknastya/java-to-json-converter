@@ -16,8 +16,12 @@ public class Converter {
 
             } else if (f.getType().toString().contains("Map")) {
                 convertMap(f,person);
+            } else if (f.getType().toString().contains("Set")) {
+                System.out.println(f.getType());
+                convertSet(f,person);
             } else{
                 json += "\""+ f.getName() +"\" : " + "\""+ f.get(person) +"\",";
+                System.out.println(f.getType());
             }
 
         }
@@ -26,6 +30,22 @@ public class Converter {
         }
         json += "}";
         System.out.println(json);
+    }
+    private void convertSet(Field f, Person person) throws IllegalAccessException {
+        json += "\""+ f.getName() +"\" : [ ";
+        Set set = (Set)f.get(person);
+        Iterator iterator = set.iterator();
+        int i = 0;
+        int size = set.size();
+        while(iterator.hasNext()){
+            Object ob = iterator.next();
+            if(i == size-1){
+                json += "\"" + ob + "\" ],";
+            }else{
+                json += "\"" + ob + "\", ";
+            }
+            i++;
+        }
     }
     private void convertList(Field f, Person person) throws IllegalAccessException {
         json += "\""+ f.getName() +"\" : [ ";

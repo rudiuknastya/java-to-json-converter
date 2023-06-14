@@ -3,10 +3,12 @@ package task6;
 import java.util.*;
 public class Person {
     private String name = "Alex";
-    private Integer age = 23;
+    private int age = 23;
     private boolean married = true;
     private List<String> hobbies = new ArrayList<>();
     private Map<String, String>languages = new HashMap<>();
+    private char sex = 'm';
+    private Set<String> cars = new TreeSet<>();
 
     public void setName(String name) {
         this.name = name;
@@ -26,5 +28,9 @@ public class Person {
 
     public void setLanguages(String key, String value) {
         languages.put(key,value);
+    }
+
+    public void setCars(String car) {
+       cars.add(car);
     }
 }
